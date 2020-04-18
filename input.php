@@ -1,3 +1,4 @@
+
 <?php 
 
 $message = '';
@@ -26,13 +27,15 @@ if(isset($_POST["submit"])){
         if(file_exists('dba.json')) {
             $current_data = file_get_contents('dba.json');
             $array_data = json_decode($current_data, true);
+            $low = $_POST['tags'];
+            $relow = strtolower($low);
             $extra = array(
                 'titel' => $_POST['titel'],
                 'erklaerung' => $_POST['erklaerung'],
                 'link' => $_POST['link'],
                 'befehl' => $_POST['befehl'],
                 'imScript' => $_POST['imScript'],
-                'tags' => $_POST['tags']
+                'tags' => $relow
             );
             $array_data[] = $extra;
             $final_data = json_encode($array_data);
